@@ -7,17 +7,13 @@ import {
   BrainCircuit,
   CheckCircle2,
   ChevronRight,
-  CircleUserRound,
   Clock3,
   Database,
   ExternalLink,
   FileText,
-  GraduationCap,
   Maximize2,
-  MessageSquareMore,
   Network,
   Play,
-  Sparkles,
   UsersRound,
   X,
 } from 'lucide-react';
@@ -33,6 +29,8 @@ type Project = {
   researchers: string[];
   line: Line;
   relation: string;
+  objective: string;
+  publications: string[];
   image?: string;
   secondaryImage?: { src: string; name: string };
 };
@@ -45,6 +43,8 @@ const projects: Project[] = [
     researchers: ['Carlos Niell', 'Fernando Armas'],
     line: 'Automatización y Robótica',
     relation: 'Conecta dispositivos y necesidades sociales con el entorno experimental.',
+    objective: 'Desarrollar robots orientados a necesidades de personas con capacidades diferentes.',
+    publications: ['Passerini, S., Tabelione, F., & López, P. (2026). Desarrollo de un sistema cibernético de asistencia: prótesis robótica basada en visión computacional y arquitectura distribuida. WICC 2026.'],
     image: '/assets/researchers/pedro-lopez.png',
   },
   {
@@ -54,6 +54,16 @@ const projects: Project[] = [
     researchers: ['Silvia Poncio', 'Soledad Ayala', 'Alejandro Hernández', 'María Andrea Guisen'],
     line: 'Ingeniería de Software',
     relation: 'Proyecto troncal: aporta el método incremental que articula capacidades y sistemas.',
+    objective: 'Definir y validar un método sistemático, incremental y reproducible para transformar propiedades y capacidades en sistemas de gestión empresarial consolidados.',
+    publications: [
+      'Sartorio, A., Ayala, S., & Hernández, A. (2025). Diseño de aplicaciones e-learning adaptativas: superando limitaciones mediante arquitecturas modulares y escalables. JAIIO 2025.',
+      'Sartorio, A., & Rossi, G. (2026). Transformación de LMS a ALS utilizando una arquitectura de referencia. WICC 2026.',
+      'Sánchez, A., Luccini, E., Alderete, A., Musilli, S., & Sartorio, A. (2026). Odo-park: automatización de la gestión de estacionamientos por medio de computer vision y Odoo. WICC 2026.',
+      'Sartorio, A., & Rossi, G. (2026). From Learning Management Systems to Adaptive Learning. WICC 2026.',
+      'Guisen, M. A., Giorgi, L., Acosta, P., López Serra, L., Sartorio, A., & Pons, C. (2026). El prompt como unidad crítica de accesibilidad en la interacción con IA conversacional en educación superior. WICC 2026.',
+      'Castellini, G., Avella, L., Villa, L., & Sartorio, A. (En prensa). Hojas de rutas de aprendizajes basadas en metodología ágil. CONAIISI.',
+      'Samela, M., Zaninetti, C., Caliva, G., Figallo, G., Battaglia, N., Antonelli, L., & Sartorio, A. (2026). Enseñanza de Ingeniería de Requerimientos en la era de la IA generativa. WICC 2026.',
+    ],
     image: '/assets/researchers/alejandro-sartorio.png',
   },
   {
@@ -63,6 +73,12 @@ const projects: Project[] = [
     researchers: ['Pablo Audoglio', 'Leonardo Prósperi', 'Claudia Pons', 'Jorge Kamlofsky'],
     line: 'Ingeniería de Software',
     relation: 'Explora trazabilidad y confianza para procesos distribuidos.',
+    objective: 'Estudiar casos de uso de la tecnología blockchain y su aporte a la transformación digital de las organizaciones.',
+    publications: [
+      'Dángelo, V., López, P., & Hernández, A. (2025). Transferencias de conceptos básicos de programación de la escuela media a la universidad. Revista de Educación en Ingeniería.',
+      'Jaime, F., Estelles, J. P., Lodato, M., Torassa Colombero, V., & Hernández, A. (2025). Modelos de micropagos descentralizados: una propuesta basada en blockchain para servicios digitales. CONAIISI 2025.',
+      'Ayala, S., Sartorio, A., Hernández, A., Gaseli, J., Dip, M., & Durán, M. (2026). Inteligencia artificial generativa: relevamiento del estado del arte sobre transformaciones pedagógicas y plataformas educativas. WICC 2026.',
+    ],
     image: '/assets/researchers/alejandro-hernandez.png',
   },
   {
@@ -72,6 +88,8 @@ const projects: Project[] = [
     researchers: ['Matías Banega', 'Sebastián Velázquez', 'Carlos Neil', 'Marcelo De Vincenzi Zemborain'],
     line: 'Ingeniería de Software',
     relation: 'Organiza actividades formativas y su seguimiento dentro de la plataforma.',
+    objective: 'Crear un módulo tecnológico, metodológico y funcional para construir y utilizar hojas de rutas de actividades educativas aplicadas al desarrollo de software.',
+    publications: ['Castellini, G., Avella, L., Villa, L., & Sartorio, A. (En prensa). Hojas de rutas de aprendizajes basadas en metodología ágil. CONAIISI.'],
     image: '/assets/researchers/alejandro-sartorio.png',
   },
   {
@@ -81,6 +99,15 @@ const projects: Project[] = [
     researchers: ['Pedro López', 'María Eugenia Casco'],
     line: 'Ingeniería de Software',
     relation: 'Protege la infraestructura, las identidades y los intercambios del entorno.',
+    objective: 'Proteger la infraestructura de las redes informáticas y sus componentes mediante conceptos y aplicaciones de ciberseguridad.',
+    publications: [
+      'Roatta, S., Casco, M. E., & Torassa, V. (2025). Dockerización de servidores SCADA: ciberseguridad industrial. WICC.',
+      'Torassa, A., Roatta, S., & Casco, M. E. (2025). Uso ético de los agentes de inteligencia artificial en la investigación académica. CACIC.',
+      'Estelles, J., Roatta, S., & Casco, M. E. (2025). Seguridad en APIs: identificación y mitigación de vulnerabilidades críticas. CONAIISI.',
+      'Casco, M. E., & Roatta, S. E. (2025). Management of non-custodian digital evidence: an ISO/IEC 27050 standards-based approach. Computer Science – CACIC, 404–416. Springer.',
+      'Torassa, V., Casco, M. E., & Roatta, S. (2026). Go como lenguaje de diseño: reducción de complejidad accidental en sistemas concurrentes. WICC 2026.',
+      'Casco, M. E., & Roatta, S. (2026). Programa de investigación, desarrollo y enseñanza de ciberseguridad en la UAI. WICC 2026.',
+    ],
     image: '/assets/researchers/santiago-roatta.png',
     secondaryImage: { src: '/assets/researchers/maria-eugenia-casco.png', name: 'María Eugenia Casco' },
   },
@@ -91,6 +118,13 @@ const projects: Project[] = [
     researchers: ['Cintia Cuña', 'Alejandro Sartorio'],
     line: 'Sociedad y Educación',
     relation: 'Convierte actividad en indicadores para formación y toma de decisiones.',
+    objective: 'Diseñar, implementar y validar un datawarehouse con IA que permita diagnosticar y visualizar el desarrollo de soft skills mediante indicadores.',
+    publications: [
+      'Poncio, S., Cuña, C., Cardú, N., & Ruiz, G. (2025). Data Warehouse Soft Skills: modelo diagnóstico para la observación de la actitud empática. TEYET.',
+      'Poncio, S., Cuña, C., Cardú, N., Ruiz, G., & Bressan, A. (2025). Inteligencia artificial en el modelo de competencias emprendedoras. AFIDE, Roma.',
+      'Poncio, S., Cuña, C., Bressan, A., Cardú, N., & Ruiz, G. (2025). Data Warehouse Soft Skills: diagnóstico de la capacidad de cooperar con otros. IPCTIIC.',
+      'Bressan, A., Cardú, N., Ruiz, G., Poncio, S., & Cuña, C. (2026). Modelo diagnóstico integral de competencias mediante Business Intelligence e inteligencia artificial. WICC 2026.',
+    ],
     image: '/assets/researchers/silvia-poncio.png',
   },
   {
@@ -100,6 +134,13 @@ const projects: Project[] = [
     researchers: ['Claudia Pons', 'Christian Parkinson', 'Alejandro Sartorio'],
     line: 'Sociedad y Educación',
     relation: 'Mejora la interacción accesible entre personas y agentes conversacionales.',
+    objective: 'Desarrollar una taxonomía de estrategias de prompting para optimizar la accesibilidad en la interacción con IA conversacional en contextos académicos.',
+    publications: [
+      'Giorgi, L., Acosta, P., López Serra, L., & Guisen, M. A. (2025). Taxonomía de prompting para la optimización de la accesibilidad en sistemas de IA conversacional. CIITI TE.',
+      'Giorgi, L., Acosta, P., López Serra, L., & Guisen, M. A. (2025). Hacia una taxonomía de prompting accesible en la educación superior. CIIAE.',
+      'Acosta, P., López Serra, L., Giorgi, L., & Guisen, M. A. (2025). Taxonomía de prompts para optimizar la accesibilidad académica en sistemas de IA conversacional. Revista RAIA.',
+      'Guisen, M. A., Giorgi, L. N., Acosta, P. E., López Serra, L., Sartorio, A., & Pons, C. (2026). El prompt como unidad crítica de accesibilidad en educación superior. WICC 2026.',
+    ],
     image: '/assets/researchers/andrea-guisen.png',
   },
   {
@@ -109,6 +150,15 @@ const projects: Project[] = [
     researchers: ['Claudia Pons', 'Christian Parkinson', 'Mauro Soto', 'Nadia Carolina Ksybala'],
     line: 'Sociedad y Educación',
     relation: 'Lleva capacidades de accesibilidad comunicacional a un dispositivo móvil.',
+    objective: 'Desarrollar un punto tecnológico móvil con estrategias sustentables de accesibilidad comunicacional para personas con síndrome de Rett y otras condiciones neurológicas.',
+    publications: [
+      'Guisen, M. A., et al. (2025). Especialistas del CONICET lideran un proyecto para mejorar la accesibilidad comunicacional de personas con afecciones neurológicas. CONICET VocAr.',
+      'Guisen, M. A., et al. (2025). Especialistas del CONICET participaron de la Hackaton ArcelorMittal Acindar. CONICET.',
+      'Garay Angulo, O., Guisen, M. A., & Gutiérrez Rodríguez, V. (2025). Elaboración de textos y edición de publicaciones digitales accesibles. En Manual de accesibilidad digital. CLACSO.',
+      'Guisen, M. A. (2025). The EntteR Project: women-led innovation in assistive technologies. LAWCC, CLEI.',
+      'Guisen, M. A., Safir Vasquez Yrigoin, A., Capomasi, I., Banducci, M., López, P., Soto, M. A., & Ksybala, N. C. (2026). Punto tecnológico para estrategias de accesibilidad comunicacional. WICC 2026.',
+      'Guisen, M. A., & Lavayen, M. V. (2026). Accesibilidad comunicacional: entre la ciencia y la experiencia. En Fonoaudiología Federal.',
+    ],
     image: '/assets/researchers/andrea-guisen.png',
   },
   {
@@ -118,11 +168,19 @@ const projects: Project[] = [
     researchers: ['Alejandro Hernández', 'Juliana Carpinetti', 'Santiago Roatta'],
     line: 'Sociedad y Educación',
     relation: 'Evalúa las condiciones de uso y accesibilidad de plataformas educativas.',
+    objective: 'Analizar condiciones de usabilidad en plataformas educativas e identificar la aplicación de las Web Content Accessibility Guidelines.',
+    publications: [
+      'Ayala, S., Sartorio, A., Hernández, A., Gaseli, J., & Dip, M. (2025). Educación superior, plataformas e inteligencia artificial. SIDS, 54 JAIIO.',
+      'Ayala, S., & Betta, L. (2025). Criterios pedagógicos de los materiales educativos digitales en el campus virtual UNRaf en tiempos híbridos. Jornadas de Investigación en Educación UNRaf–UNINOVE.',
+      'Ayala, S., Sartorio, A., Hernández, A., Gaseli, J., Dip, M., & Durán, M. (2026). IA generativa: transformaciones pedagógicas y plataformas educativas. WICC 2026.',
+      'Betta, L., & Ayala, S. (2025). Sentidos pedagógicos de los materiales educativos digitales en el campus virtual UNRaf. VI CAESCyT.',
+      'Betta, L., Ayala, S., & Perren, G. (2025). Materiales educativos digitales en las aulas del campus virtual UNRaf. 10.º Seminario RUEDA.',
+    ],
     image: '/assets/researchers/soledad-ayala.png',
   },
 ];
 
-const timings = ['0:40', '1:15', '1:00', '1:25', '1:20', '1:05', '1:05', '1:05', '1:15', '2:10', '1:20', '0:50'];
+const timings = ['0:40', '1:15', '1:00', '1:25', '1:35', '1:10', '1:15', '1:15', '2:20', '1:25', '0:50'];
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return <p className="eyebrow">{children}</p>;
@@ -172,6 +230,32 @@ function EvidenceGallery() {
           <button key={item.src} className={index === active ? 'active' : ''} onClick={() => setActive(index)}>
             <span>0{index + 1}</span><strong>{item.label}</strong>
           </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+const hyperShots = [
+  { src: '/assets/hiperproductividad/agentes-personales.png', label: 'Agentes personales' },
+  { src: '/assets/hiperproductividad/agente-configuracion.png', label: 'Configuración' },
+  { src: '/assets/hiperproductividad/swarms-equipos.png', label: 'Swarms' },
+  { src: '/assets/hiperproductividad/canales-colaborativos.jpg', label: 'Canales colaborativos' },
+  { src: '/assets/hiperproductividad/oficina-virtual.png', label: 'Oficina virtual' },
+  { src: '/assets/hiperproductividad/cerebro-datos.png', label: 'Cerebro organizacional' },
+  { src: '/assets/hiperproductividad/tablero-productividad.png', label: 'Tablero de productividad' },
+  { src: '/assets/hiperproductividad/terminal-agentes.png', label: 'Motores de agentes' },
+];
+
+function HyperGallery() {
+  const [active, setActive] = useState(3);
+  const shot = hyperShots[active];
+  return (
+    <div className="hyper-gallery">
+      <div className="hyper-main"><Image src={shot.src} alt={shot.label} width={1920} height={1080} /><strong>{shot.label}</strong></div>
+      <div className="hyper-thumbs">
+        {hyperShots.map((item, index) => (
+          <button key={item.src} className={index === active ? 'active' : ''} onClick={() => setActive(index)}>{item.label}</button>
         ))}
       </div>
     </div>
@@ -291,21 +375,18 @@ export default function Home() {
       </div>
     </section>,
 
-    <section className="slide platform-slide" key="platform">
-      <Eyebrow>Adaptación como Hiper(n)productividad</Eyebrow>
-      <h2>La capacidad crece cuando cada ciclo observa, aprende y amplifica el siguiente</h2>
-      <div className="platform-diagram">
-        <div className="platform-layer people-layer"><UsersRound /><strong>Humanos</strong><span>definen intención y validan</span></div>
-        <div className="platform-layer agents-layer"><Bot /><strong>Entornos de agentes</strong><span>distribuyen y amplifican trabajo</span></div>
-        <div className="platform-core"><Sparkles /><strong>Hiper(n)productividad</strong><span>productividad¹ · productividad² · productividad³ · productividadⁿ</span></div>
-        <div className="platform-base"><MessageSquareMore /><span>Canales colaborativos tipo Slack</span><Database /><span>Plataforma de gestión Odoo</span></div>
+    <section className="slide merged-platform-slide" key="platform">
+      <div className="merged-copy">
+        <Eyebrow>Adaptación como Hiper(n)productividad</Eyebrow>
+        <h2>Personas y agentes trabajan en los mismos canales</h2>
+        <p>Cada ciclo conecta intención humana, agentes especializados, conversaciones contextualizadas y gestión institucional. El aprendizaje vuelve al sistema y amplía su capacidad.</p>
+        <div className="merged-formula"><span>Humanos</span><strong>×</strong><span>Agentes</span><strong>×</strong><span>Canales</span><strong>×</strong><span>Odoo</span></div>
+        <a className="concept-link" href="https://hiperprodu.asartorio.online/" target="_blank" rel="noreferrer">Explorar Hiper(n)productividad <ExternalLink /></a>
       </div>
-      <a className="concept-link" href="https://hiperprodu.asartorio.online/" target="_blank" rel="noreferrer">Explorar el modelo de Hiper(n)productividad <ExternalLink /></a>
-    </section>,
-
-    <section className="slide evidence-slide" key="collab">
-      <div className="evidence-copy"><Eyebrow>Capa 1 · Colaboración</Eyebrow><h2>Personas y agentes trabajan en los mismos canales</h2><p>Las conversaciones dejan de ser mensajes aislados. Se convierten en actividad contextualizada: pedidos, respuestas, decisiones, documentos y seguimiento.</p><ul><li><CircleUserRound /> Investigadores, docentes y alumnos</li><li><Bot /> Agentes especializados</li><li><MessageSquareMore /> Canales organizados por proyecto y actividad</li></ul></div>
-      <div className="collab-shot"><Image src="/assets/screenshots/canal-telegram.png" alt="Interacción entre una persona y el agente CAETI" width={753} height={917} /><span>La próxima captura tipo Slack/Buzz reemplazará o ampliará esta evidencia.</span></div>
+      <div className="merged-visual">
+        <Image src="/assets/screenshots/canal-telegram.png" alt="Interacción entre una persona y un agente CAETI" width={753} height={917} />
+        <div><UsersRound /><span>intención</span><Bot /><span>amplificación</span><Database /><span>trazabilidad</span></div>
+      </div>
     </section>,
 
     <section className="slide evidence-slide reverse" key="odoo">
@@ -314,22 +395,8 @@ export default function Home() {
     </section>,
 
     <section className="slide capabilities-slide" key="capabilities">
-      <Eyebrow>Capacidades institucionales</Eyebrow>
-      <h2>Una misma arquitectura sostiene actividades diferentes</h2>
-      <div className="capability-flow">
-        {[
-          [FileText, 'Gestión documental'],
-          [MessageSquareMore, 'Comunicación institucional'],
-          [UsersRound, 'Gestión de investigadores'],
-          [CheckCircle2, 'Tramitaciones y avances'],
-          [Database, 'Procesos y finanzas'],
-          [GraduationCap, 'Capacitación y entrenamiento'],
-        ].map(([Icon, label], i) => {
-          const IconComponent = Icon as typeof FileText;
-          return <div key={label as string} style={{ '--i': i } as React.CSSProperties}><IconComponent /><span>{label as string}</span></div>;
-        })}
-      </div>
-      <p className="capability-note">Cada nueva capacidad amplía el sistema sin interrumpir lo que ya funciona.</p>
+      <div className="hyper-heading"><div><Eyebrow>Los vectores de Hiper(n)productividad</Eyebrow><h2>La arquitectura toma forma en entornos reales</h2></div><p>Agentes, swarms, canales, oficinas virtuales, datos y motores de ejecución amplían la capacidad disponible.</p></div>
+      <HyperGallery />
     </section>,
 
     <section className="slide operational-slide" key="operational">
@@ -403,6 +470,8 @@ export default function Home() {
             <h3 id="project-title">{selected.title}</h3>
             <div className="modal-data"><span>Dirección</span><strong>{selected.director}</strong><span>Equipo de investigación</span><strong>{selected.researchers.join(' · ')}</strong></div>
             <div className="relation"><Network /><p>{selected.relation}</p></div>
+            <section className="project-objective"><span>Objetivo</span><p>{selected.objective}</p></section>
+            <section className="publications"><span>Publicaciones</span><ol>{selected.publications.map((publication) => <li key={publication}>{publication}</li>)}</ol></section>
           </dialog>
         </div>
       )}
