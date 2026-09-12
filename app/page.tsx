@@ -178,7 +178,7 @@ const projects: Project[] = [
   },
 ];
 
-const timings = ['0:40', '1:15', '1:00', '1:25', '1:35', '1:35', '1:20', '2:30', '1:30', '0:55'];
+const timings = ['0:40', '1:15', '1:00', '1:25', '1:35', '1:35', '1:20', '2:30', '1:20'];
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return <p className="eyebrow">{children}</p>;
@@ -241,6 +241,56 @@ function HyperGallery() {
         ))}
       </div>
     </div>
+  );
+}
+
+const closingVisions = [
+  {
+    label: 'El Centro que investigamos',
+    detail: 'Nueve proyectos y tres líneas producen conocimiento desde problemas concretos.',
+    image: '/assets/hiperproductividad/cerebro-datos.png',
+    caption: 'Investigación conectada',
+    copy: 'Equipos, proyectos y evidencia forman una memoria común que permite observar relaciones y orientar nuevas preguntas.',
+  },
+  {
+    label: 'La plataforma que construimos',
+    detail: 'Agentes, canales y Odoo sostienen colaboración, gestión y trazabilidad.',
+    image: '/assets/hiperproductividad/canales-colaborativos.jpg',
+    caption: 'Laboratorio en funcionamiento',
+    copy: 'La propia gestión del Centro se convierte en un entorno experimental donde las capacidades se integran y validan.',
+  },
+  {
+    label: 'La organización posible',
+    detail: 'Cada ciclo aprende del anterior y amplía la capacidad institucional.',
+    image: '/assets/hiperproductividad/oficina-virtual.png',
+    caption: 'Sistema adaptativo inteligente',
+    copy: 'La arquitectura conecta personas, agentes y procesos para alcanzar Hiper(n)productividad con supervisión humana.',
+  },
+];
+
+function ClosingVision() {
+  const [active, setActive] = useState(0);
+  const vision = closingVisions[active];
+  return (
+    <section className="slide final-vision-slide">
+      <Eyebrow>09 · El aterrizaje en el CAETI</Eyebrow>
+      <h2 className="final-vision-title"><span>Arquitectura adaptativa para la</span><strong><span>HIPER</span><sup>N</sup><span>PRODUCTIVIDAD</span></strong></h2>
+      <p className="final-vision-lead">De los proyectos de investigación a una capacidad institucional que aprende y evoluciona.</p>
+      <div className="final-vision-stage">
+        <div className="final-vision-tabs" role="tablist" aria-label="Perspectivas de cierre">
+          {closingVisions.map((item, index) => (
+            <button key={item.label} className={index === active ? 'active' : ''} role="tab" aria-selected={index === active} onClick={() => setActive(index)}>
+              <b>0{index + 1}</b><span>{item.label}</span><small>{item.detail}</small>
+            </button>
+          ))}
+        </div>
+        <article className="final-vision-display" aria-live="polite">
+          <Image key={vision.image} src={vision.image} alt={vision.caption} width={1920} height={1080} />
+          <div><b>{vision.caption}</b><strong>{vision.copy}</strong></div>
+        </article>
+      </div>
+      <p className="final-vision-feedback">Gestionamos la investigación y, al mismo tiempo, investigamos nuevas formas de gestionarla.</p>
+    </section>
   );
 }
 
@@ -389,26 +439,7 @@ export default function Home() {
       <ProjectMap onSelect={setSelected} />
     </section>,
 
-    <section className="slide participation-slide" key="participation">
-      <Eyebrow>Investigación como experiencia formativa</Eyebrow>
-      <h2>La plataforma también acompaña el ingreso y el crecimiento de nuevos investigadores</h2>
-      <div className="journey">
-        {[
-          ['01', 'Convocatoria', 'Estudiantes y graduados descubren los proyectos.'],
-          ['02', 'Capacitación', 'Formación institucional, metodológica y científica.'],
-          ['03', 'Participación', 'Trabajo supervisado dentro de un proyecto y su célula tecnológica.'],
-          ['04', 'Producción', 'Artículos, congresos y evidencias de competencias en investigación.'],
-        ].map(([n, title, copy]) => <div key={n}><span>{n}</span><strong>{title}</strong><p>{copy}</p></div>)}
-      </div>
-    </section>,
-
-    <section className="slide closing-slide" key="closing">
-      <div className="closing-symbol"><BrainCircuit /><span className="pulse-ring" /></div>
-      <Eyebrow>La idea central</Eyebrow>
-      <h2>La plataforma convierte al Centro en un laboratorio vivo de sistemas adaptativos</h2>
-      <p>Gestionamos la investigación y, al mismo tiempo, investigamos nuevas formas de gestionarla.</p>
-      <div className="closing-tags"><span>9 proyectos</span><span>3 líneas</span><span>1 arquitectura compartida</span></div>
-    </section>,
+    <ClosingVision key="closing-vision" />,
   ];
 
   const toggleFullscreen = () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
