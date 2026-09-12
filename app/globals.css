@@ -154,6 +154,22 @@ h2 { max-width: 1180px; margin-bottom: 2rem; font-size: clamp(2.5rem, 4.8vw, 5.6
 .screenshot-tabs button { padding: .7rem; border: 1px solid var(--line); background: rgba(255,255,255,.68); color: #627f8e; cursor: pointer; font-size: .68rem; font-weight: 800; }
 .screenshot-tabs button span { margin-right: .4rem; color: var(--cyan); }
 .screenshot-tabs button.active { background: var(--navy); border-color: var(--navy); color: white; }
+.mosaic-slide { justify-content: flex-start; padding-top: 1.7rem; }
+.mosaic-heading { display: flex; align-items: end; justify-content: space-between; gap: 2rem; }
+.mosaic-heading h2 { margin-bottom: .85rem; font-size: clamp(2.2rem, 3.8vw, 4.3rem); }
+.mosaic-heading > p { width: 360px; margin-bottom: 1rem; color: #5f4a54; font-size: .98rem; line-height: 1.45; }
+.evidence-mosaic { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); gap: .65rem; }
+.evidence-mosaic button { min-width: 0; min-height: 0; position: relative; overflow: hidden; padding: 0; border: 1px solid var(--line); background: #f6f1f3; cursor: zoom-in; box-shadow: 0 10px 25px rgba(71,12,32,.07); transition: transform .2s ease, box-shadow .2s ease; }
+.evidence-mosaic button:hover { z-index: 2; transform: translateY(-3px); box-shadow: 0 18px 36px rgba(71,12,32,.16); }
+.evidence-mosaic img { width: 100%; height: 100%; object-fit: contain; }
+.evidence-mosaic button > span { position: absolute; left: .65rem; top: .65rem; width: 28px; height: 28px; display: grid; place-items: center; color: white; background: var(--cyan); font-size: .66rem; font-weight: 900; }
+.evidence-mosaic button > strong { position: absolute; inset: auto 0 0; padding: .65rem .8rem; text-align: left; color: white; background: linear-gradient(transparent, rgba(16,17,38,.92)); font-size: .78rem; }
+.image-lightbox { position: fixed; z-index: 80; inset: 0; display: grid; place-items: center; padding: 3vh 3vw; background: rgba(16,17,38,.86); backdrop-filter: blur(14px); }
+.image-lightbox dialog { width: min(1420px, 94vw); height: min(850px, 90vh); margin: auto; padding: 1.1rem; border: 0; display: grid; grid-template-rows: 1fr auto; place-items: center; background: white; box-shadow: 0 35px 100px rgba(0,0,0,.4); }
+.image-lightbox img { width: 100%; height: 100%; min-height: 0; object-fit: contain; }
+.image-lightbox dialog > strong { padding-top: .7rem; color: var(--navy); font-size: 1rem; }
+.lightbox-close { position: absolute; z-index: 2; right: 1.1rem; top: 1.1rem; width: 42px; height: 42px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: white; background: var(--blue); cursor: pointer; }
+.lightbox-close svg { width: 1.1rem; }
 
 .capabilities-slide { align-items: center; text-align: center; }
 .capabilities-slide h2 { margin-bottom: 2.5rem; }
@@ -272,6 +288,9 @@ h2 { max-width: 1180px; margin-bottom: 2rem; font-size: clamp(2.5rem, 4.8vw, 5.6
   .capability-flow { grid-template-columns: repeat(3, 1fr); }
   .journey { grid-template-columns: 1fr 1fr; }
   .identity-heading, .operational-heading { align-items: flex-start; flex-direction: column; }
+  .mosaic-heading { align-items: flex-start; flex-direction: column; gap: .2rem; }
+  .mosaic-heading > p { width: 100%; }
+  .evidence-mosaic { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, 1fr); }
   .hyper-heading { align-items: flex-start; flex-direction: column; }
   .hyper-heading > p { width: 100%; }
   .hyper-gallery { grid-template-columns: 1fr; }

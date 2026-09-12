@@ -5,12 +5,10 @@ import {
   ArrowRight,
   Bot,
   BrainCircuit,
-  CheckCircle2,
   ChevronRight,
   Clock3,
   Database,
   ExternalLink,
-  FileText,
   Maximize2,
   Network,
   Play,
@@ -180,34 +178,10 @@ const projects: Project[] = [
   },
 ];
 
-const timings = ['0:40', '1:15', '1:00', '1:25', '1:35', '1:10', '1:15', '1:15', '2:20', '1:25', '0:50'];
+const timings = ['0:40', '1:15', '1:00', '1:25', '1:35', '1:35', '1:20', '2:30', '1:30', '0:55'];
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return <p className="eyebrow">{children}</p>;
-}
-
-const managementShots = [
-  { src: '/assets/screenshots/odoo-proyecto.png', label: 'Proyecto y actividad' },
-  { src: '/assets/screenshots/odoo-objetivos.png', label: 'Objetivos y seguimiento' },
-  { src: '/assets/screenshots/odoo-eventos.png', label: 'Eventos institucionales' },
-];
-
-function ScreenshotGallery() {
-  const [active, setActive] = useState(0);
-  return (
-    <div className="screenshot-gallery">
-      <div className="screenshot-stage">
-        <Image src={managementShots[active].src} alt={`Captura de Odoo: ${managementShots[active].label}`} width={1904} height={518} priority />
-      </div>
-      <div className="screenshot-tabs" aria-label="Capturas de la plataforma de gestión">
-        {managementShots.map((shot, index) => (
-          <button key={shot.src} className={index === active ? 'active' : ''} onClick={() => setActive(index)}>
-            <span>0{index + 1}</span>{shot.label}
-          </button>
-        ))}
-      </div>
-    </div>
-  );
 }
 
 const evidenceShots = [
@@ -219,20 +193,28 @@ const evidenceShots = [
   { src: '/assets/screenshots/alineacion-caeti.png', label: 'Alineación estratégica' },
 ];
 
-function EvidenceGallery() {
-  const [active, setActive] = useState(0);
-  const shot = evidenceShots[active];
+function EvidenceMosaic() {
+  const [expanded, setExpanded] = useState<(typeof evidenceShots)[number] | null>(null);
   return (
-    <div className="evidence-gallery">
-      <div className="evidence-screen"><Image src={shot.src} alt={shot.label} width={1904} height={900} /></div>
-      <div className="evidence-index">
+    <>
+      <div className="evidence-mosaic">
         {evidenceShots.map((item, index) => (
-          <button key={item.src} className={index === active ? 'active' : ''} onClick={() => setActive(index)}>
+          <button key={item.src} onClick={() => setExpanded(item)}>
+            <Image src={item.src} alt={item.label} width={1904} height={900} />
             <span>0{index + 1}</span><strong>{item.label}</strong>
           </button>
         ))}
       </div>
-    </div>
+      {expanded && (
+        <div className="image-lightbox">
+          <dialog open aria-label={`Vista ampliada: ${expanded.label}`}>
+            <button className="lightbox-close" onClick={() => setExpanded(null)} aria-label="Cerrar imagen"><X /></button>
+            <Image src={expanded.src} alt={expanded.label} width={1904} height={1000} />
+            <strong>{expanded.label}</strong>
+          </dialog>
+        </div>
+      )}
+    </>
   );
 }
 
@@ -392,19 +374,14 @@ export default function Home() {
       </div>
     </section>,
 
-    <section className="slide evidence-slide reverse" key="odoo">
-      <ScreenshotGallery />
-      <div className="evidence-copy"><Eyebrow>Capa 2 · Gestión</Eyebrow><h2>La actividad se conecta con los procesos institucionales</h2><p>Odoo organiza la información y formaliza el trabajo que nace en el entorno colaborativo.</p><ul><li><FileText /> Documentos, avances y proyectos</li><li><UsersRound /> Investigadores internos y externos</li><li><CheckCircle2 /> Trámites, finanzas y procesos</li></ul></div>
+    <section className="slide mosaic-slide" key="evidence-mosaic">
+      <div className="mosaic-heading"><div><Eyebrow>Escena 6 · Evidencia operativa</Eyebrow><h2>La adaptación se observa en el trabajo real</h2></div><p>Todas las imágenes están visibles. Hacé clic en cualquiera para verla a pantalla ampliada.</p></div>
+      <EvidenceMosaic />
     </section>,
 
     <section className="slide capabilities-slide" key="capabilities">
       <div className="hyper-heading"><div><Eyebrow>Los vectores de Hiper(n)productividad</Eyebrow><h2>La arquitectura toma forma en entornos reales</h2></div><p>Agentes, swarms, canales, oficinas virtuales, datos y motores de ejecución amplían la capacidad disponible.</p></div>
       <HyperGallery />
-    </section>,
-
-    <section className="slide operational-slide" key="operational">
-      <div className="operational-heading"><div><Eyebrow>Evidencia operativa</Eyebrow><h2>La adaptación se observa en el trabajo real</h2></div><p>Seis vistas conectan objetivos, proyectos, conversaciones y alineación institucional. Seleccioná cada evidencia para ampliarla.</p></div>
-      <EvidenceGallery />
     </section>,
 
     <section className="slide projects-slide" key="projects">
