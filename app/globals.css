@@ -82,6 +82,23 @@ h2 { max-width: 1180px; margin-bottom: 2rem; font-size: clamp(2.5rem, 4.8vw, 5.6
 .incremental-visual span { color: var(--cyan); font-size: .75rem; font-weight: 900; }
 .incremental-visual strong { color: var(--navy); }
 .incremental-visual svg { margin-left: auto; width: 1rem; color: #9bb1bd; }
+.cycle-collage { min-height: 500px; position: relative; border: 1px solid var(--line); background: linear-gradient(145deg, #fff 0%, #fbf5f7 100%); box-shadow: 0 28px 70px rgba(71,12,32,.1); overflow: hidden; }
+.cycle-collage::before { content: ''; position: absolute; width: 270px; height: 270px; left: 50%; top: 48%; border: 2px dashed rgba(231,0,79,.28); border-radius: 50%; transform: translate(-50%,-50%); animation: orbit-turn 16s linear infinite; }
+@keyframes orbit-turn { to { transform: translate(-50%,-50%) rotate(360deg); } }
+.collage-title { position: absolute; z-index: 4; left: 1.3rem; top: 1.2rem; max-width: 250px; }
+.collage-title span { display: block; color: var(--cyan); font-size: .72rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+.collage-title strong { display: block; margin-top: .35rem; color: var(--navy); font-size: 1.05rem; line-height: 1.2; }
+.collage-card { position: absolute; z-index: 2; margin: 0; overflow: hidden; border: 5px solid white; background: #fff; box-shadow: 0 14px 30px rgba(16,17,38,.16); animation: collage-float 5s ease-in-out infinite; }
+.collage-card img { width: 100%; height: 100%; object-fit: cover; }
+.collage-card figcaption { position: absolute; inset: auto 0 0; padding: .45rem .6rem; color: white; background: rgba(16,17,38,.82); font-size: .65rem; font-weight: 900; }
+.collage-agent { width: 46%; height: 32%; right: 5%; top: 7%; transform: rotate(2deg); }
+.collage-swarm { width: 37%; height: 30%; left: 5%; top: 35%; transform: rotate(-3deg); animation-delay: -.8s; }
+.collage-channel { width: 51%; height: 28%; right: 4%; top: 45%; transform: rotate(2deg); animation-delay: -1.6s; }
+.collage-dashboard { width: 50%; height: 27%; left: 8%; bottom: 5%; transform: rotate(-1deg); animation-delay: -2.4s; }
+@keyframes collage-float { 0%,100% { translate: 0 0; } 50% { translate: 0 -7px; } }
+.cycle-loop { position: absolute; z-index: 5; right: 1rem; bottom: 1rem; display: flex; align-items: center; gap: .3rem; padding: .55rem .7rem; color: white; background: var(--blue); box-shadow: 0 10px 25px rgba(71,12,32,.25); }
+.cycle-loop span { font-size: .65rem; font-weight: 900; }
+.cycle-loop svg { width: .75rem; }
 
 .platform-slide { text-align: center; align-items: center; }
 .platform-slide h2 { margin-bottom: 2.4rem; }
@@ -248,6 +265,7 @@ h2 { max-width: 1180px; margin-bottom: 2rem; font-size: clamp(2.5rem, 4.8vw, 5.6
   .trunk-slide, .evidence-slide, .evidence-slide.reverse { grid-template-columns: 1fr; gap: 1.5rem; }
   .merged-platform-slide { grid-template-columns: 1fr; gap: 1.2rem; }
   .incremental-visual { display: grid; grid-template-columns: 1fr 1fr; }
+  .cycle-collage { min-height: 430px; }
   .capture-frame { min-height: 260px; transform: none; }
   .capture-body { min-height: 210px; }
   .screenshot-stage { height: 280px; }

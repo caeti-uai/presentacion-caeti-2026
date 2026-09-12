@@ -368,10 +368,13 @@ export default function Home() {
         <p>La investigación trabaja sobre arquitecturas existentes para incorporar propiedades y capacidades adaptativas de manera sistemática, reproducible y verificable.</p>
         <div className="research-team"><span>Dirección</span><strong>Alejandro Sartorio</strong><span>Equipo</span><strong>Silvia Poncio · Soledad Ayala · Alejandro Hernández · María Andrea Guisen</strong></div>
       </div>
-      <div className="incremental-visual" aria-label="Transformación incremental en cuatro etapas">
-        {['Sistema consolidado', 'Capacidad observable', 'Regla de adaptación', 'Sistema adaptativo'].map((item, i) => (
-          <div key={item} style={{ '--i': i } as React.CSSProperties}><span>0{i + 1}</span><strong>{item}</strong>{i < 3 && <ChevronRight />}</div>
-        ))}
+      <div className="cycle-collage" aria-label="Productividad que escala ciclo tras ciclo">
+        <div className="collage-title"><span>Motor recursivo</span><strong>Productividad que escala ciclo tras ciclo</strong></div>
+        <figure className="collage-card collage-agent"><Image src="/assets/hiperproductividad/agentes-personales.png" alt="Agentes personales" width={1669} height={1046} /><figcaption>Agente personal</figcaption></figure>
+        <figure className="collage-card collage-swarm"><Image src="/assets/hiperproductividad/swarms-equipos.png" alt="Swarms de agentes" width={1153} height={940} /><figcaption>Swarm</figcaption></figure>
+        <figure className="collage-card collage-channel"><Image src="/assets/hiperproductividad/canales-colaborativos.jpg" alt="Canales colaborativos" width={1500} height={749} /><figcaption>Canales</figcaption></figure>
+        <figure className="collage-card collage-dashboard"><Image src="/assets/hiperproductividad/tablero-productividad.png" alt="Tablero de productividad" width={1910} height={907} /><figcaption>Aprendizaje y métricas</figcaption></figure>
+        <div className="cycle-loop"><span>capacidad¹</span><ChevronRight /><span>capacidad²</span><ChevronRight /><span>capacidadⁿ</span></div>
       </div>
     </section>,
 
