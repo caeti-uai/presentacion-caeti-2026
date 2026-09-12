@@ -10,6 +10,7 @@ import {
   CircleUserRound,
   Clock3,
   Database,
+  ExternalLink,
   FileText,
   GraduationCap,
   Maximize2,
@@ -33,6 +34,7 @@ type Project = {
   line: Line;
   relation: string;
   image?: string;
+  secondaryImage?: { src: string; name: string };
 };
 
 const projects: Project[] = [
@@ -79,6 +81,8 @@ const projects: Project[] = [
     researchers: ['Pedro López', 'María Eugenia Casco'],
     line: 'Ingeniería de Software',
     relation: 'Protege la infraestructura, las identidades y los intercambios del entorno.',
+    image: '/assets/researchers/santiago-roatta.png',
+    secondaryImage: { src: '/assets/researchers/maria-eugenia-casco.png', name: 'María Eugenia Casco' },
   },
   {
     code: 'TI/26/139',
@@ -265,14 +269,15 @@ export default function Home() {
     </section>,
 
     <section className="slide platform-slide" key="platform">
-      <Eyebrow>La plataforma experimental</Eyebrow>
-      <h2>Un entorno común para investigar mientras el trabajo sucede</h2>
+      <Eyebrow>Adaptación como Hiper(n)productividad</Eyebrow>
+      <h2>La capacidad crece cuando cada ciclo observa, aprende y amplifica el siguiente</h2>
       <div className="platform-diagram">
-        <div className="platform-layer people-layer"><UsersRound /><strong>Personas</strong><span>proponen · deciden · validan</span></div>
-        <div className="platform-layer agents-layer"><Bot /><strong>Agentes</strong><span>observan · asisten · actúan</span></div>
-        <div className="platform-core"><Sparkles /><strong>Arquitectura adaptativa</strong><span>conecta actividad, contexto y capacidades</span></div>
-        <div className="platform-base"><MessageSquareMore /><span>Espacio colaborativo</span><Database /><span>Gestión institucional</span></div>
+        <div className="platform-layer people-layer"><UsersRound /><strong>Humanos</strong><span>definen intención y validan</span></div>
+        <div className="platform-layer agents-layer"><Bot /><strong>Entornos de agentes</strong><span>distribuyen y amplifican trabajo</span></div>
+        <div className="platform-core"><Sparkles /><strong>Hiper(n)productividad</strong><span>productividad¹ · productividad² · productividad³ · productividadⁿ</span></div>
+        <div className="platform-base"><MessageSquareMore /><span>Canales colaborativos tipo Slack</span><Database /><span>Plataforma de gestión Odoo</span></div>
       </div>
+      <a className="concept-link" href="https://hiperprodu.asartorio.online/" target="_blank" rel="noreferrer">Explorar el modelo de Hiper(n)productividad <ExternalLink /></a>
     </section>,
 
     <section className="slide evidence-slide" key="collab">
@@ -361,7 +366,12 @@ export default function Home() {
           <dialog open className="project-modal" aria-labelledby="project-title">
             <button className="modal-close" onClick={() => setSelected(null)} aria-label="Cerrar"><X /></button>
             <p className="eyebrow">{selected.code} · {selected.line}</p>
-            {selected.image && <Image className="director-photo" src={selected.image} alt={`Retrato de ${selected.director}`} width={160} height={180} />}
+            {(selected.image || selected.secondaryImage) && (
+              <div className="project-portraits">
+                {selected.image && <div><Image src={selected.image} alt={`Retrato de ${selected.director}`} width={160} height={180} /><span>{selected.director}</span></div>}
+                {selected.secondaryImage && <div><Image src={selected.secondaryImage.src} alt={`Retrato de ${selected.secondaryImage.name}`} width={160} height={180} /><span>{selected.secondaryImage.name}</span></div>}
+              </div>
+            )}
             <h3 id="project-title">{selected.title}</h3>
             <div className="modal-data"><span>Dirección</span><strong>{selected.director}</strong><span>Equipo de investigación</span><strong>{selected.researchers.join(' · ')}</strong></div>
             <div className="relation"><Network /><p>{selected.relation}</p></div>
