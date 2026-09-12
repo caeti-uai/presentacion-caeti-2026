@@ -122,27 +122,10 @@ const projects: Project[] = [
   },
 ];
 
-const timings = ['0:45', '1:10', '1:35', '1:35', '1:25', '1:25', '1:15', '2:30', '1:20', '1:00'];
+const timings = ['0:40', '1:15', '1:00', '1:25', '1:20', '1:05', '1:05', '1:05', '1:15', '2:10', '1:20', '0:50'];
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return <p className="eyebrow">{children}</p>;
-}
-
-function CapturePlaceholder({ kind }: { kind: 'collab' | 'odoo' }) {
-  const collab = kind === 'collab';
-  return (
-    <div className={`capture-frame ${collab ? 'capture-collab' : 'capture-odoo'}`}>
-      <div className="capture-topbar">
-        <span /><span /><span />
-        <p>{collab ? 'Entorno colaborativo' : 'Plataforma de gestión'}</p>
-      </div>
-      <div className="capture-body">
-        <div className="capture-icon">{collab ? <MessageSquareMore /> : <Database />}</div>
-        <strong>Espacio reservado para captura</strong>
-        <span>{collab ? 'Canales, conversaciones y agentes' : 'Formularios, flujos y trazabilidad'}</span>
-      </div>
-    </div>
-  );
 }
 
 const managementShots = [
@@ -162,6 +145,32 @@ function ScreenshotGallery() {
         {managementShots.map((shot, index) => (
           <button key={shot.src} className={index === active ? 'active' : ''} onClick={() => setActive(index)}>
             <span>0{index + 1}</span>{shot.label}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+const evidenceShots = [
+  { src: '/assets/screenshots/odoo-objetivos.png', label: 'Objetivos y avance' },
+  { src: '/assets/screenshots/odoo-eventos.png', label: 'Eventos institucionales' },
+  { src: '/assets/screenshots/odoo-proyecto.png', label: 'Proyecto TI/26/140' },
+  { src: '/assets/screenshots/canal-telegram.png', label: 'Interacción con agentes' },
+  { src: '/assets/screenshots/gestion-control.png', label: 'Gestión y control' },
+  { src: '/assets/screenshots/alineacion-caeti.png', label: 'Alineación estratégica' },
+];
+
+function EvidenceGallery() {
+  const [active, setActive] = useState(0);
+  const shot = evidenceShots[active];
+  return (
+    <div className="evidence-gallery">
+      <div className="evidence-screen"><Image src={shot.src} alt={shot.label} width={1904} height={900} /></div>
+      <div className="evidence-index">
+        {evidenceShots.map((item, index) => (
+          <button key={item.src} className={index === active ? 'active' : ''} onClick={() => setActive(index)}>
+            <span>0{index + 1}</span><strong>{item.label}</strong>
           </button>
         ))}
       </div>
@@ -235,13 +244,27 @@ export default function Home() {
 
   const slides = [
     <section className="slide cover" key="cover">
-      <div className="cover-mark"><Network /><span>CAETI · UAI</span></div>
+      <div className="cover-mark"><Network /><span>UAI · CAETI</span></div>
       <div className="cover-copy">
         <Eyebrow>Proyecto de investigación TI/26/140</Eyebrow>
         <h1>Arquitectura de Software para la Transformación hacia Sistemas Adaptativos Inteligentes</h1>
         <p className="lead">Una plataforma experimental donde la arquitectura, las personas y los agentes convierten la investigación en actividad observable.</p>
       </div>
       <div className="cover-footer"><span>Alejandro Sartorio · Director CAETI</span><span>Proyectos de investigación 2026</span></div>
+    </section>,
+
+    <section className="slide identity-slide" key="identity">
+      <div className="identity-heading"><Eyebrow>Centro de Altos Estudios en Tecnología Informática</Eyebrow><h2>Investigación que conecta ciencia, formación y sociedad</h2></div>
+      <div className="identity-grid">
+        <article><span>Misión</span><p>Contribuir al desarrollo de las TIC mediante investigación básica y aplicada, formar recursos humanos de excelencia y transferir resultados hacia la industria y la sociedad.</p></article>
+        <article><span>Visión</span><p>Abordar necesidades sociales relevantes y buscar soluciones tecnológicas con ciencia, técnica, pensamiento organizador y capacidad de innovación.</p></article>
+      </div>
+      <div className="research-lines">
+        <strong>Líneas de investigación CAETI Rosario</strong>
+        <div><span>Automatización y Robótica</span><span>Ingeniería de Software</span><span>Sociedad del Conocimiento y Tecnologías aplicadas a la Educación</span></div>
+      </div>
+      <a className="source-link" href="https://caeti.uai.edu.ar/" target="_blank" rel="noreferrer">Fuente institucional CAETI <ExternalLink /></a>
+
     </section>,
 
     <section className="slide question" key="question">
@@ -282,7 +305,7 @@ export default function Home() {
 
     <section className="slide evidence-slide" key="collab">
       <div className="evidence-copy"><Eyebrow>Capa 1 · Colaboración</Eyebrow><h2>Personas y agentes trabajan en los mismos canales</h2><p>Las conversaciones dejan de ser mensajes aislados. Se convierten en actividad contextualizada: pedidos, respuestas, decisiones, documentos y seguimiento.</p><ul><li><CircleUserRound /> Investigadores, docentes y alumnos</li><li><Bot /> Agentes especializados</li><li><MessageSquareMore /> Canales organizados por proyecto y actividad</li></ul></div>
-      <CapturePlaceholder kind="collab" />
+      <div className="collab-shot"><Image src="/assets/screenshots/canal-telegram.png" alt="Interacción entre una persona y el agente CAETI" width={753} height={917} /><span>La próxima captura tipo Slack/Buzz reemplazará o ampliará esta evidencia.</span></div>
     </section>,
 
     <section className="slide evidence-slide reverse" key="odoo">
@@ -307,6 +330,11 @@ export default function Home() {
         })}
       </div>
       <p className="capability-note">Cada nueva capacidad amplía el sistema sin interrumpir lo que ya funciona.</p>
+    </section>,
+
+    <section className="slide operational-slide" key="operational">
+      <div className="operational-heading"><div><Eyebrow>Evidencia operativa</Eyebrow><h2>La adaptación se observa en el trabajo real</h2></div><p>Seis vistas conectan objetivos, proyectos, conversaciones y alineación institucional. Seleccioná cada evidencia para ampliarla.</p></div>
+      <EvidenceGallery />
     </section>,
 
     <section className="slide projects-slide" key="projects">
@@ -342,7 +370,7 @@ export default function Home() {
     <main className="presentation-shell">
       <div className="ambient ambient-one" /><div className="ambient ambient-two" />
       <header className="presenter-header">
-        <div className="brand"><Network /><span>CAETI</span><small>UAI</small></div>
+        <div className="brand"><Network /><span>UAI</span><small>CAETI</small></div>
         <div className="presenter-tools">
           <span className="slide-time"><Clock3 /> {timings[slide]}</span>
           <button className={`timer ${startedAt ? 'running' : ''}`} onClick={() => startedAt ? setStartedAt(null) : setStartedAt(Date.now() - seconds * 1000)} aria-label="Iniciar o pausar cronómetro"><Play /> {timer}</button>
